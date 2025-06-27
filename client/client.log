@@ -1,0 +1,33 @@
+
+> client@0.1.0 start
+> react-scripts start
+
+(node:5000) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:5000) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+
+Compiled with warnings.
+
+[eslint] 
+src/components/TestCaseList.tsx
+  Line 25:6:  React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/components/TestCaseList.tsx
+  Line 25:6:  React Hook useEffect has a missing dependency: 'loadData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+webpack compiled with 1 warning
+ERROR in src/components/TestCaseList.tsx:109:43
+TS2802: Type 'Set<number>' can only be iterated through when using the '--downlevelIteration' flag or with a '--target' of 'es2015' or higher.
+    107 |     try {
+    108 |       // Add to running tests
+  > 109 |       setRunningTests(prev => new Set([...prev, testCase.id!]));
+        |                                           ^^^^
+    110 |       
+    111 |       const response = await testCaseAPI.run(testCase.id!);
+    112 |       setRunningTest({
+
