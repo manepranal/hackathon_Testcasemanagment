@@ -19,10 +19,18 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// Use data directory for Railway persistent storage
-const dbPath = process.env.RAILWAY_VOLUME_MOUNT_PATH 
-  ? path.join(process.env.RAILWAY_VOLUME_MOUNT_PATH, 'test_cases.db')
-  : path.join(__dirname, '../test_cases.db');
+// Use data directory for persistent storage (Render or Railway)
+const dbPath = process.env.DATABASE_PATH || 
+  process.env.RAILWAY_VOLUME_MOUNT_PATH 
+    ? path.join(process.env.RAILWAY_VOLUME_MOUNT_PATH || '/var/data', 'test_cases.db')
+    : path.join(__dirname, '../test_cases.db');
+
+// Ensure directory exists
+const fs = require('fs');
+const dir = path.dirname(dbPath);
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir, { recursive: true });
+}
 
 const db = new Database(dbPath);
 initializeDatabase(db);
